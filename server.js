@@ -6,9 +6,9 @@
 *
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 *
-* Name: Sarthak Bhalla Student ID: 137872222 Date: 16th february 2024
+* Name: Sarthak Bhalla Student ID: 137872222 
 *
-********************************************************************************/
+*********************************************************************/
 
 const express = require('express');
 const legoData = require('./modules/legoSets');
