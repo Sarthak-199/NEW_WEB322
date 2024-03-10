@@ -1,14 +1,17 @@
 /********************************************************************************
-* WEB322 – Assignment 04
+*  WEB322 – Assignment 04
+* 
+*  I declare that this assignment is my own work in accordance with Seneca's
+*  Academic Integrity Policy:
+* 
+*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+* 
+*  Name: Sarthak bhalla  Student ID: 137872222 Date: 03/09/2024
 *
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-*
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-*
-* Name: Sarthak Bhalla Student ID: 137872222 
-*
-*********************************************************************/
+*  Published URL: https://long-teal-gharial-coat.cyclic.app/
+*  Github : https://github.com/Sarthak-199/NEW_WEB322.git
+********************************************************************************/
+
 
 const express = require('express');
 const legoData = require('./modules/legoSets');
