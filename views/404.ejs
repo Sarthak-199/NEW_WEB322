@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lego Collection</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="antialiased text-gray-800">
+    <header class="bg-white shadow">
+        <%- include('partials/navbar', { page: '' }) %>
+
+
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold text-gray-800">Lego Collection</a>
+            <div class="flex items-center space-x-4">
+                <a href="/about" class="text-gray-600 hover:text-gray-800">About</a>
+                Dropdown for themes  
+                <details class="dropdown">
+                    <summary class="m-1 btn">THEME</summary>
+                    <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                      <li><a href="/lego/sets?theme=Town">Town</a></li>
+                      <li><a href="/lego/sets?theme=Train">Train</a></li>
+                      <li><a href="/lego/sets?theme=Basic Set">Basic Set</a></li>
+                    </ul>
+                  </details>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gray-100">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <img src="/images/404.png" alt="Lego Construction" class="mx-auto" style="max-width: 100%; height: auto;">
+                <h2 class="text-4xl font-semibold text-gray-800">404: Page Not Found</h2>
+                <p class="mt-2 text-gray-600"><%= message %></p>
+                <a href="/" class="mt-6 inline-block bg-cyan-800 text-white font-semibold py-2 px-4 rounded hover:bg-cyan-500">Return Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white shadow">
+        <div class="container mx-auto px-6 py-4">
+            <p class="text-center text-gray-600">© 2024 Lego Collection</p>
+        </div>
+    </footer>
+</body>
+</html>

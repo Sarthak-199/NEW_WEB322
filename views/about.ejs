@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Lego Collection</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="antialiased text-gray-800">
+    <header class="bg-white shadow">
+        <%- include('partials/navbar', { page: '/about' }) %>
+
+    </header>
+
+    <main>
+     
+        <section class="bg-gray-100">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <h2 class="text-4xl font-semibold text-gray-800">About</h2>
+                <p class="mt-2 text-gray-600">Talking about myself is boring , better, lets drink tequila and keep away from social media.</p>
+            </div>
+        </section>
+
+        >
+        <section class="container mx-auto px-6 py-8">
+            <div class="flex flex-wrap items-center">
+                <div class="w-full md:w-1/2">
+                    <img src="/images/about.png" alt="About Us" class="rounded shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2 md:pl-10">
+                    <h3 class="text-2xl font-semibold">About Javier Garcia</h3>
+                    <p class="mt-2 text-gray-600">Computer programming student that loves to spend time with his wife, play tennis and watch "The office" in his free time.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white shadow">
+        <div class="container mx-auto px-6 py-4">
+            <p class="text-center text-gray-600">© 2024 Lego Collection</p>
+        </div>
+    </footer>
+</body>
+</html>

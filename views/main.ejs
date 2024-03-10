@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Collection</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="antialiased text-gray-800">
+    <header class="bg-white shadow">
+        <%- include('partials/navbar', { page: '/main' }) %>
+
+       
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gray-100">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <h1 class="text-4xl font-semibold text-gray-800">Welcome</h1>
+                <p class="mt-2 text-gray-600">Release your inner architect and set off on an enthralling adventure across the vibrant world of Lego.</p>
+                <a href="/lego/sets" class="mt-6 inline-block bg-cyan-800 text-white font-semibold py-2 px-4 rounded hover:bg-cyan-500">Get Started Now</a>
+            </div>
+        </section>
+
+        <!-- Card Section -->
+        <section class="container mx-auto px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="/images/pizza.png" alt="Pizza To Go" class="w-full" style="height: 250px; object-fit: cover;">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Pizza To Go</h3>
+                        <p class="text-gray-600 mt-1">Slice through the ordinary and deliver a piece of fun with the 'Pizza To Go' Lego set!</p>
+                        <a href="/lego/sets/10036-1" class="mt-3 inline-block bg-cyan-800 text-white font-semibold py-2 px-4 rounded hover:bg-cyan-500">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="/images/metroliner.png" alt="MetroLiner" class="w-full" style="height: 250px; object-fit: cover;">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Metroliner</h3>
+                        <p class="text-gray-600 mt-1">All aboard the imagination express with the 'Metroliner' Lego set – where every stop is an adventure!</p>
+                        <a href="/lego/sets/10001-1" class="mt-3 inline-block bg-cyan-800 text-white font-semibold py-2 px-4 rounded hover:bg-cyan-500">View Details</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="/images/caboose.png" alt="Caboose" class="w-full" style="height: 250px; object-fit: cover;">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Caboose</h3>
+                        <p class="text-gray-600 mt-1">End your quest for creative play with the 'Caboose' Lego set – the final piece to your building journey!</p>
+                        <a href="/lego/sets/10014-1" class="mt-3 inline-block bg-cyan-800 text-white font-semibold py-2 px-4 rounded hover:bg-cyan-500">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white shadow">
+        <div class="container mx-auto px-6 py-4">
+            <p class="text-center text-gray-600">© 2024 Lego Collection</p>
+        </div>
+    </footer>
+</body>
+</html>

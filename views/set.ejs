@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= set.name %> - Lego Set</title>
+    <link href="/css/main.css" rel="stylesheet">
+   
+</head>
+<body>
+    <header>
+        <%- include('partials/navbar', { page: '' }) %> 
+    </header>
+    
+    <main class="text-center">
+       
+        <div class="hero bg-gray-100">
+            
+            <p class="text-lg mb-6">Below, you will find detailed information about the set: <%= set.name %></p>
+
+        </div>
+        
+        <div class="set-info my-4">
+            <img src="<%= set.img_url %>" alt="Image of <%= set.name %>" class="block mx-auto" style="max-width: 80%; height: auto;">
+            <h2 class="text-4xl font-bold my-2"><%= set.name %></h2>
+            <p class="text-md">Year Released: <%= set.year %></p>
+            <p class="text-md">Theme: <%= set.theme %></p>
+            <p class="text-md mb-4">Number of Parts: <%= set.num_parts %></p>
+        </div>
+       
+        <div id="quote" class="italic my-4"></div>
+        
+        
+        <a href="#" onclick="history.back(); return false;" class="inline-block bg-cyan-800 text-white font-semibold py-2 px-4 rounded hover:bg-cyan-500">Back</a>
+    </main>
+
+    <footer class="bg-white shadow mt-4">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p class="text-gray-600">© 2024 Lego Collection</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('https://quotable.io/random')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('quote').innerHTML = `"${data.content}" — ${data.author}`;
+                })
+                .catch(error => console.log('Error fetching quote:', error));
+        });
+    </script>
+</body>
+</html>
