@@ -1,5 +1,4 @@
-
-/***************************************************************************
+/********************************************************************************
 * WEB322 – Assignment 04
 *
 * I declare that this assignment is my own work in accordance with Seneca's
@@ -7,11 +6,10 @@
 *
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 *
-* Name         : Javier Ricardo Garcia Perez 
-* Student ID   : 167379213
-* Date         : 7 March 2024
-* Published URL: https://ill-ruby-cormorant.cyclic.app
+* Name: Sarthak Bhalla Student ID: 137872222 Date: 16th february 2024
+*
 ********************************************************************************/
+
 const express = require('express');
 const legoData = require('./modules/legoSets');
 const app = express();
