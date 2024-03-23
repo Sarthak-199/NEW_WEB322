@@ -1,89 +1,103 @@
-/********************************************************************************
-*  WEB322 – Assignment 04
-* 
-*  I declare that this assignment is my own work in accordance with Seneca's
-*  Academic Integrity Policy:
-* 
-*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-*  Name: Sarthak bhalla  Student ID: 137872222 Date: 03/09/2024
-*
-*  Published URL: https://long-teal-gharial-coat.cyclic.app/
-*  Github : https://github.com/Sarthak-199/NEW_WEB322.git
-********************************************************************************/
 
-
+const legoData = require("./modules/legoSets");
 const express = require('express');
-const legoData = require('./modules/legoSets');
 const app = express();
-const port = 8080;
-const path = require("path");
 
+const HTTP_PORT = process.env.PORT || 3000;
+
+app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
-// public
-app.use(express.static("public"));
 
-legoData.initialize()
-    .then(() => {
-        console.log('Data initialized successfully.');
 
-        // home
-        app.get('/', (req, res) => {
-            res.render("main");
-        });
 
-        // About
-        app.get('/about', (req, res) => {
-            res.render("about");
-        });
+app.get('/', (req, res) => {
+  res.render("main")
+});
 
-        // Lego sets + theme
-        app.get('/lego/sets', (req, res) => {
-            const themeQuery = req.query.theme;
-            if (themeQuery) {
-                legoData.getSetsByTheme(themeQuery)
-                    .then(sets => {
-                        if (sets.length > 0) {
-                            res.render('sets', {sets: sets}); // Render the sets.ejs view with the filtered sets
-                        } else {
-                            res.status(404).render("404", {message: "No sets found for the specified theme."});
-                        }
-                    })
-                    .catch(error => res.status(404).render("404", {message: "Error fetching sets by theme."}));
-            } else {
-                legoData.getAllSets()
-                    .then(sets => res.render('sets', {sets: sets})) // Render the sets.ejs view with all sets
-                    .catch(error => res.status(500).send(error));
-            }
-        });
+app.get('/about', (req, res) => {
+  res.render("about");
+});
 
-        //set_num
-        app.get('/lego/sets/:setNum', (req, res) => {
-            const setNum = req.params.setNum;
-            legoData.getSetByNum(setNum)
-                .then(set => {
-                    if (set) {
-                        res.render('set', { set: set }); // Render the set.ejs view with the retrieved set data
-                    } else {
-                        res.status(404).render("404", {message: `No set found with number ${setNum}.`});
-                    }
-                })
-                .catch(error => {
-                    // Handle the error, such as when the set is not found
-                    res.status(404).render("404", {message: `Set with number ${setNum} not found.`});
-                });
-        });
 
-        // 404 Handler - Updated to include custom messages
-        app.use((req, res) => {
-            res.status(404).render("404", {message: "The page you are looking for does not exist."});
-        });
+app.get("/lego/addSet", async (req,res)=>{
+  let themes = await legoData.getAllThemes()
+  res.render("addSet", { themes: themes })
+});
 
-        app.listen(port, () => {
-            console.log(`Server running on port ${port}`);
-        });
-    })
-    .catch(error => {
-        console.error('Failed to initialize data:', error);
-    });
+app.post("/lego/addSet", async (req, res)=>{
+try{
+  await legoData.addSet(req.body);
+  res.redirect("/lego/sets");
+}
+catch(err)
+{
+  res.status(500).render("500", {message: `Error: ${err}`});
+}
+});
+
+app.get("/lego/editSet/:num", async (req,res)=>{
+  try{
+    let set = await legoData.getSetByNum(req.params.num);
+    let themes = await legoData.getAllThemes();
+    res.render("editSet", {set, themes});
+  }catch(err){
+    res.status(404).render("404", {message: err});
+  }
+});
+
+app.post("/lego/editSet", async (req, res)=>{
+try{
+await legoData.editSet(req.body.set_num, req.body);
+res.redirect("/lego/sets");
+}catch(err){
+res.status(500).render("500",{message: `Error 500 ${err}`});
+}
+});
+
+app.get("/lego/deleteSet/:num", async (req, res)=>{
+try{
+await legoData.deleteSet(req.params.num);
+res.redirect("/lego/sets");
+}catch(err){
+res.status(500).render("500", {message: `Error ${err}`});
+}
+});
+
+app.get("/lego/sets", async (req, res)=>{
+let sets = [];
+
+try{
+if(req.query.theme){
+  sets =await legoData.getSetsByTheme(req.query.theme)
+}
+else{
+  sets = await legoData.getAllSets();
+}
+res.render("sets", {sets})
+}catch(err){
+  res.status(404).render("404", {message: `Error ${err}`});
+}
+});
+
+app.get("/lego/sets/:num", async (req, res)=>{
+try{
+let set = await legoData.getSetByNum(req.params.num);
+res.render("set", { set });
+}catch(err){
+res.status(404).render("404", {message: `Error ${err}`});
+}
+});
+
+
+app.use((req, res, next) => {
+  
+  res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
+});
+
+legoData.initialize().then(()=>{
+  app.listen(HTTP_PORT, () => { console.log(`server listening on: ${HTTP_PORT}`) });
+}).catch(err => {
+  console.log(err);
+})
